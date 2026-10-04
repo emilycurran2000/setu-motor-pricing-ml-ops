@@ -157,6 +157,7 @@ and is loaded using:
 
 ```python
 pd.read_csv(csv_path, sep=";")
+```
 
 ## 9. Reproducibility of data collection
 
