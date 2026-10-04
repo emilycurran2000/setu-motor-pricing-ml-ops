@@ -48,21 +48,12 @@ This also fits with the file types being used in the project. The original data 
 
 ## 4. Data versioning
 
-Raw and processed datasets will be versioned separately.
 
-The original source data will be treated as immutable. The first downloaded
-dataset will be stored as:
+The original raw files are kept unchanged so that the processed datasets can always be recreated from the same source data.
 
-`gs://setu-data-handling/raw/v1/`
+Google Cloud Storage object versioning is enabled on the bucket, so if a file is overwritten an older version can still be recovered.
 
-If the source dataset is later replaced or updated, a new raw version such as
-`raw/v2/` will be created rather than overwriting the existing files.
-
-Processed datasets will also use versioned folders, for example:
-
-`gs://setu-data-handling/processed/v1/`
-
-A new processed-data version will be created if the cleaning, feature construction, filtering or split changes enough to alter the resulting dataset. I’ll keep a small amount of information with each version, such as which raw data it came from, when it was created, the row counts and which train/validation/test periods were used. I also plan to link this back to the relevant Git commit so it’s possible to trace a processed dataset back to the code that created it.
+The code used to create the processed datasets is tracked in Git. If I make a major change later to the cleaning, feature construction or split, I will create a new processed-data version rather than treating it as the same dataset.
 
 ## 5. Data access
 
@@ -91,7 +82,6 @@ I am keeping these repeated insureds in the test set because returning customers
 
 There is also a large change in `business_type` across years, with much more portfolio business in 2023 and 2024 than in 2022. Because of this I also plan to compare performance for new business (`NB`) and portfolio business (`P`) separately. The full 2023 portfolio will still be the main test set.
 
-### Leakage controls
 
 ### Leakage controls
 
