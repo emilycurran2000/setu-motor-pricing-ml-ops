@@ -32,12 +32,12 @@ The processed data will be saved as Parquet files. I chose Parquet instead of CS
 
 The original CSV and Excel files will stay unchanged in `raw/`, while cleaned and model-ready versions will be written to `processed/`.
 
-At the moment I expect the layout to look something like:
+The processed file are stored under the paths:
 
-`processed/v1/train_2022.parquet`  
-`processed/v1/validation_2022.parquet`  
-`processed/v1/test_2023.parquet`  
-`processed/v1/future_2024.parquet`
+`processed/train_2022.parquet`  
+`processed/validation_2022.parquet`  
+`processed/test_2023.parquet`  
+`processed/future_2024.parquet`
 
 
 ## 3. Database / object storage decision
@@ -189,3 +189,17 @@ The rough preprocessing steps will be:
 Anything learned from the data during preprocessing, such as imputation values or category encodings, will be fitted using the training data only and then reused for the validation, test and future datasets.
 
 There are still a couple of cleaning rules I need to settle during the next stage, especially how to deal with zero-exposure rows and claims with zero incurred cost. Once these are decided they will be added to the pipeline rather than handled manually.
+
+## Screenshots
+
+### Raw data in Google Cloud Storage
+
+![Raw data stored in Google Cloud Storage](../images/gcs_raw.png)
+
+### Processed data in Google Cloud Storage
+
+![Processed Parquet files stored in Google Cloud Storage](../images/gcd_processed.png)
+
+### GCS read-back check
+
+![Successful GCS read-back test](../images/verify_gcs.png)
