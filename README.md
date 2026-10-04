@@ -22,7 +22,7 @@ The current split is:
 
 full write-up:
 
-[Milestone 1](Milestone1.md)
+[Milestone 1](reports/milestone1.md)
 
 ## Code
 
